@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Convertidor de Monedas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <style>
+        body {
+        background-color: #F2E1D7
+        }
+  </style>
+
+  <script>
+  function Calculate(){
+    //Obtiene el monto a convertir
+    Monto = document.getElementById("monto").value;
+
+    //Obtiene el valor seleccionado
+    if (document.getElementById("radio_1").checked){
+      Origen = document.getElementById("radio_1").value;
+    }
+    else if (document.getElementById("radio_2").checked){
+      Origen = document.getElementById("radio_2").value;
+    }
+    else if (document.getElementById("radio_3").checked){
+      Origen = document.getElementById("radio_3").value;
+    }
+    else if (document.getElementById("radio_4").checked){
+      Origen = document.getElementById("radio_4").value;
+    }
+    else if (document.getElementById("radio_5").checked){
+      Origen = document.getElementById("radio_5").value;
+    }
+    else if (document.getElementById("radio_6").checked){
+      Origen = document.getElementById("radio_6").value;
+    }
+    else if (document.getElementById("radio_7").checked){
+      Origen = document.getElementById("radio_7").value;
+    }
+    else if (document.getElementById("radio_8").checked){
+      Origen = document.getElementById("radio_8").value;
+    }
+    else if (document.getElementById("radio_9").checked){
+      Origen = document.getElementById("radio_9").value;
+    }
+    else if (document.getElementById("radio_10").checked){
+      Origen = document.getElementById("radio_10").value;
+    }
+    else if (document.getElementById("radio_11").checked){
+      Origen = document.getElementById("radio_11").value;
+    }
+    else if (document.getElementById("radio_12").checked){
+      Origen = document.getElementById("radio_12").value;
+    }
+    else if (document.getElementById("radio_13").checked){
+      Origen = document.getElementById("radio_13").value;
+    }
+    else if (document.getElementById("radio_14").checked){
+      Origen = document.getElementById("radio_14").value;
+    }
+    else if (document.getElementById("radio_15").checked){
+      Origen = document.getElementById("radio_15").value;
+    }
+    else if (document.getElementById("radio_16").checked){
+      Origen = document.getElementById("radio_16").value;
+    }
+    else if (document.getElementById("radio_17").checked){
+      Origen = document.getElementById("radio_17").value;
+    }
+    else if (document.getElementById("radio_18").checked){
+      Origen = document.getElementById("radio_18").value;
+    }
+    else if (document.getElementById("radio_19").checked){
+      Origen = document.getElementById("radio_19").value;
+    }
+    else if (document.getElementById("radio_20").checked){
+      Origen = document.getElementById("radio_20").value;
+    }
+    else if (document.getElementById("radio_21").checked){
+      Origen = document.getElementById("radio_21").value;
+    }
+    else if (document.getElementById("radio_22").checked){
+      Origen = document.getElementById("radio_22").value;
+    }
+    else if (document.getElementById("radio_23").checked){
+      Origen = document.getElementById("radio_23").value;
+    }
+    else if (document.getElementById("radio_24").checked){
+      Origen = document.getElementById("radio_24").value;
+    }
+    else if (document.getElementById("radio_25").checked){
+      Origen = document.getElementById("radio_25").value;
+    }
+
+    //Obtener destinos
+    var Destinos = [];
+    $('#checkboxes input:checked').each(function() {
+        Destinos.push($(this).attr('value'));
+    });
+
+
+    //Limpia todos los campos
+    $("#resultado_BGN").empty();
+    $("#resultado_BMD").empty();
+    $("#resultado_BRL").empty();
+    $("#resultado_CAD").empty();
+    $("#resultado_CLP").empty();
+    $("#resultado_CNY").empty();
+    $("#resultado_COP").empty();
+    $("#resultado_CRC").empty();
+    $("#resultado_CUP").empty();
+    $("#resultado_CZK").empty();
+    $("#resultado_DKK").empty();
+    $("#resultado_DOP").empty();
+    $("#resultado_EGP").empty();
+    $("#resultado_EUR").empty();
+    $("#resultado_GBP").empty();
+    $("#resultado_GTQ").empty();
+    $("#resultado_HKD").empty();
+    $("#resultado_JPY").empty();
+    $("#resultado_MXN").empty();
+    $("#resultado_NIO").empty();
+    $("#resultado_PAB").empty();
+    $("#resultado_SZL").empty();
+    $("#resultado_TRY").empty();
+    $("#resultado_USD").empty();
+    $("#resultado_VEF").empty();
+
+    
+    
+    for (var i = 0; i < Destinos.length; i++) {
+      var rate = getRate(Origen,Destinos[i]);
+    }
+  }
+
+  function getRate(fromCurrency, toCurrency) {
+
+fromCurrency = encodeURIComponent(fromCurrency);
+toCurrency = encodeURIComponent(toCurrency);
+var query = fromCurrency + '_' + toCurrency;
+
+  var url = 'https://free.currencyconverterapi.com/api/v6/convert?q='
+          + query + '&compact=y';
+
+$.getJSON(url, function(data) {
+    var s = data[query]["val"];
+    document.getElementById("resultado_"+toCurrency).innerText = s*Monto;
+    
+ });
+};
+
+$(document).ready(function() {
+  $('#check-all').click(function(){
+    $("input:checkbox").attr('checked', true);
+  });
+  $('#uncheck-all').click(function(){
+    $("input:checkbox").attr('checked', false);
+  });
+});
+
+  </script>
+</head>
+<body>
+
+<div class="header" style="text-align: center;">
+  <h2>Convertidor de Monedas</h2>
+</div>    
+<div class="jumbotron text-center" style="border:2px solid black; background-image: url(images/banner.jpg); height: 400px; background-size: cover;">
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col"><h1>Ingrese monto a convertir  </h1> <input type="number" id="monto" name="monto" min="0" placeholder="0.0" step="0.01"><input type="button" value="Convertir" onclick="Calculate()"></div>
+    </div>
+    
+    <br>
+    <br>
+    <br>
+
+    <div class="row justify-center">
+    <div class="col">
+      <h3>Seleccione Moneda de Origen</h3> 
+    </div>
+    <div class="col">
+      <h3>Seleccione Moneda(s) de Destino</h3>
+      
+          <input id="check-all" class="checkbox isHidden" name="check-all" type="button" value="Seleccionar Todas"><input id="uncheck-all" class="checkbox isHidden" name="check-all" type="button" value="Deseleccionar Todas">
+        
+    </div>
+    <div class="col">
+      <h3>Monto(s) resultante(s)</h3>
+    </div>
+    </div>
+
+    <div class="row justify-center"><br></div>
+      
+
+
+    <div class="row justify-center">
+    <div class="col">
+      <input id="radio_1" class="radio isHidden" name="radio_a" type="radio" value="BGN">
+      <img src="images/banderas/BGN.png">
+      <label for="radio_1" class="label">BGN-Bulgaria Lev</label>
+    </div>
+    <div class="col" id="checkboxes">
+      <input id="checkbox_1" class="checkbox isHidden" name="destinos[0]" type="checkbox" value="BGN">
+      <img src="images/banderas/BGN.png">
+      <label for="checkbox_1" class="label">BGN-Bulgaria Lev</label>
+    </div>
+    <div class="col">
+      <img src="images/BGN.png">
+      <label for="monto_BGN" class="label" id="resultado_BGN"></label>
+    </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+        <input id="radio_2" class="radio isHidden" name="radio_a" type="radio" value="BMD">
+        <img src="images/banderas/BMD.png">
+        <label for="radio_2" class="label">BMD-Bermuda Dollar</label>
+      </div>
+      <div class="col" id="checkboxes">
+        <input id="checkbox_2" class="checkbox isHidden" name="destinos[1]" type="checkbox" value="BMD">
+        <img src="images/banderas/BMD.png">
+        <label for="checkbox_2" class="label">BMD-Bermuda Dollar</label>
+      </div>
+      <div class="col">
+        <img src="images/DEF.png">
+        <label for="monto_BMD" class="label" id="resultado_BMD"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_3" class="radio isHidden" name="radio_a" type="radio" value="BRL"> 
+          <img src="images/banderas/BRL.png">
+          <label for="radio_3" class="label">BRL-Brazil Real</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_3" class="checkbox isHidden" name="destinos[2]" type="checkbox" value="BRL"> 
+          <img src="images/banderas/BRL.png">
+          <label for="checkbox_3" class="label">BRL-Brazil Real</label>
+      </div>
+      <div class="col">
+          <img src="images/BRL.png">
+          <label for="monto_BRL" class="label" id="resultado_BRL"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_4" class="radio isHidden" name="radio_a" type="radio" value="CAD"> 
+          <img src="images/banderas/CAD.png">
+          <label for="radio_4" class="label">CAD-Canada Dollar</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_4" class="checkbox isHidden" name="destinos[3]" type="checkbox" value="CAD"> 
+          <img src="images/banderas/CAD.png">
+          <label for="checkbox_4" class="label">CAD-Canada Dollar</label>
+      </div>
+      <div class="col">
+          <img src="images/CAD.png">
+          <label for="monto_CAD" class="label" id="resultado_CAD"></label>
+      </div>
+    </div>
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_5" class="radio isHidden" name="radio_a" type="radio" value="CLP"> 
+          <img src="images/banderas/CLP.png">
+          <label for="radio_5" class="label">CLP-Chile Peso</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_5" class="checkbox isHidden" name="destinos[4]" type="checkbox" value="CLP"> 
+          <img src="images/banderas/CLP.png">
+          <label for="checkbox_5" class="label">CLP-Chile Peso</label>
+      </div>
+      <div class="col">
+          <img src="images/DEF.png">
+          <label for="monto_CLP" class="label" id="resultado_CLP"></label>
+      </div>
+    </div>
+
+
+
+    <div class="row justify-center"><br></div>
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_6" class="radio isHidden" name="radio_a" type="radio" value="CNY"> 
+          <img src="images/banderas/CNY.png">
+          <label for="radio_6" class="label">CNY-China Yuan Renminbi</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_6" class="checkbox isHidden" name="destinos[5]" type="checkbox" value="CNY"> 
+          <img src="images/banderas/CNY.png">
+          <label for="checkbox_6" class="label">CNY-China Yuan Renminbi</label>
+      </div>
+      <div class="col">
+          <img src="images/CNY.png">
+          <label for="monto_CNY" class="label" id="resultado_CNY"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_7" class="radio isHidden" name="radio_a" type="radio" value="COP"> 
+          <img src="images/banderas/COP.png">
+          <label for="radio_7" class="label">COP-Colombia Peso</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_7" class="checkbox isHidden" name="destinos[6]" type="checkbox" value="COP"> 
+          <img src="images/banderas/COP.png">
+          <label for="checkbox_7" class="label">COP-Colombia Peso</label>
+      </div>
+      <div class="col">
+          <img src="images/DEF.png">
+          <label for="monto_COP" class="label" id="resultado_COP"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_8" class="radio isHidden" name="radio_a" type="radio" checked="checked" value="CRC">
+          <img src="images/banderas/CRC.png">
+          <label for="radio_8" class="label">CRC-Costa Rica</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_8" class="checkbox isHidden" name="destinos[7]" type="checkbox"  value="CRC">
+          <img src="images/banderas/CRC.png">
+          <label for="checkbox_8" class="label">CRC-Costa Rica</label>
+      </div>
+      <div class="col">
+          <img src="images/CRC.png">
+          <label for="monto_CRC" class="label" id="resultado_CRC"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_9" class="radio isHidden" name="radio_a" type="radio" value="CUP"> 
+          <img src="images/banderas/CUP.png">
+          <label for="radio_9" class="label">CUP-Cuba Peso</label>
+      </div>
+
+      <div class="col" id="checkboxes">
+          <input id="checkbox_9" class="checkbox isHidden" name="destinos[8]" type="checkbox" value="CUP"> 
+          <img src="images/banderas/CUP.png">
+          <label for="checkbox_9" class="label">CUP-Cuba Peso</label>
+      </div>
+      <div class="col">
+          <img src="images/DEF.png">
+          <label for="monto_CUP" class="label" id="resultado_CUP"></label>
+      </div>
+    </div>
+
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_10" class="radio isHidden" name="radio_a" type="radio" value="CZK"> 
+          <img src="images/banderas/CZK.png">
+          <label for="radio_10" class="label">CZK-Czech Republic Koruna</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_10" class="checkbox isHidden" name="destinos[9]" type="checkbox" value="CZK"> 
+          <img src="images/banderas/CZK.png">
+          <label for="checkbox_10" class="label">CZK-Czech Republic Koruna</label>
+      </div>
+      <div class="col">
+          <img src="images/CZK.png">
+          <label for="monto_CZK" class="label" id="resultado_CZK"></label>
+      </div>
+    </div>
+
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_11" class="radio isHidden" name="radio_a" type="radio" value="DKK"> 
+          <img src="images/banderas/DKK.png">
+          <label for="radio_11" class="label">DKK-Denmark Krone</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_11" class="checkbox isHidden" name="destinos[10]" type="checkbox" value="DKK"> 
+          <img src="images/banderas/DKK.png">
+          <label for="checkbox_11" class="label">DKK-Denmark Krone</label>
+      </div>
+      <div class="col">
+          <img src="images/DKK.png">
+          <label for="monto_DKK" class="label" id="resultado_DKK"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_12" class="radio isHidden" name="radio_a" type="radio" value="DOP"> 
+          <img src="images/banderas/DOP.png">
+          <label for="radio_12" class="label">DOP-Dominican Republic Peso</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_12" class="checkbox isHidden" name="destinos[11]" type="checkbox" value="DOP"> 
+          <img src="images/banderas/DOP.png">
+          <label for="checkbox_12" class="label">DOP-Dominican Republic Peso</label>
+      </div>
+      <div class="col">
+          <img src="images/DOP.png">
+          <label for="monto_DOP" class="label" id="resultado_DOP"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_13" class="radio isHidden" name="radio_a" type="radio" value="EGP"> 
+          <img src="images/banderas/EGP.png">
+          <label for="radio_12" class="label">EGP-Egypt Pound</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_13" class="checkbox isHidden" name="destinos[12]" type="checkbox" value="EGP"> 
+          <img src="images/banderas/EGP.png">
+          <label for="checkbox_12" class="label">EGP-Egypt Pound</label>
+      </div>
+      <div class="col">
+          <img src="images/EGP.png">
+          <label for="monto_EGP" class="label" id="resultado_EGP"></label>
+      </div>
+    </div>
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_14" class="radio isHidden" name="radio_a" type="radio" value="EUR"> 
+          <img src="images/banderas/EUR.png">
+          <label for="radio_14" class="label">EUR-Euro Member Countries</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_14" class="checkbox isHidden" name="destinos[13]" type="checkbox" value="EUR"> 
+          <img src="images/banderas/EUR.png">
+          <label for="checkbox_14" class="label">EUR-Euro Member Countries</label>
+      </div>
+      <div class="col">
+          <img src="images/EUR.png">
+          <label for="monto_EUR" class="label" id="resultado_EUR"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_15" class="radio isHidden" name="radio_a" type="radio" value="GBP"> 
+          <img src="images/banderas/GBP.png">
+          <label for="radio_15" class="label">GBP-United Kingdom Pound</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_15" class="checkbox isHidden" name="destinos[14]" type="checkbox" value="GBP"> 
+          <img src="images/banderas/GBP.png">
+          <label for="checkbox_15" class="label">GBP-United Kingdom Pound</label>
+      </div>
+      <div class="col">
+          <img src="images/GBP.png">
+          <label for="monto_GBP" class="label" id="resultado_GBP"></label>
+      </div>
+    </div>
+
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_16" class="radio isHidden" name="radio_a" type="radio" value="GTQ"> 
+          <img src="images/banderas/GTQ.png">
+          <label for="radio_16" class="label">GTQ-Guatemala Quetzal</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_16" class="checkbox isHidden" name="destinos[15]" type="checkbox" value="GTQ"> 
+          <img src="images/banderas/GTQ.png">
+          <label for="checkbox_16" class="label">GTQ-Guatemala Quetzal</label>
+      </div>
+      <div class="col">
+          <img src="images/GTQ.png">
+          <label for="monto_GTQ" class="label" id="resultado_GTQ"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+      
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_17" class="radio isHidden" name="radio_a" type="radio" value="HKD"> 
+          <img src="images/banderas/HKD.png">
+          <label for="radio_17" class="label">HKD-Hong Kong Dollar</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_17" class="checkbox isHidden" name="destinos[16]" type="checkbox" value="HKD"> 
+          <img src="images/banderas/HKD.png">
+          <label for="checkbox_17" class="label">HKD-Hong Kong Dollar</label>
+      </div>
+      <div class="col">
+          <img src="images/HKD.png">
+          <label for="monto_HKD" class="label" id="resultado_HKD"></label>
+      </div>
+    </div>
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_18" class="radio isHidden" name="radio_a" type="radio" value="JPY"> 
+          <img src="images/banderas/JPY.png">
+          <label for="radio_12" class="label">JPY-Japan Yen</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_18" class="checkbox isHidden" name="destinos[17]" type="checkbox" value="JPY"> 
+          <img src="images/banderas/JPY.png">
+          <label for="checkbox_12" class="label">JPY-Japan Yen</label>
+      </div>
+      <div class="col">
+          <img src="images/CNY.png">
+          <label for="monto_JPY" class="label" id="resultado_JPY"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_19" class="radio isHidden" name="radio_a" type="radio" value="MXN"> 
+          <img src="images/banderas/MXN.png">
+          <label for="radio_19" class="label">MXN-Mexico Peso</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_19" class="checkbox isHidden" name="destinos[18]" type="checkbox" value="MXN"> 
+          <img src="images/banderas/MXN.png">
+          <label for="checkbox_19" class="label">MXN-Mexico Peso</label>
+      </div>
+      <div class="col">
+          <img src="images/DEF.png">
+          <label for="monto_MXN" class="label" id="resultado_MXN"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_20" class="radio isHidden" name="radio_a" type="radio" value="NIO"> 
+          <img src="images/banderas/NIO.png">
+          <label for="radio_20" class="label">NIO-Nicaragua Cordoba</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_20" class="checkbox isHidden" name="destinos[19]" type="checkbox" value="NIO"> 
+          <img src="images/banderas/NIO.png">
+          <label for="checkbox_20" class="label">NIO-Nicaragua Cordoba</label>
+      </div>
+      <div class="col">
+          <img src="images/NIO.png">
+          <label for="monto_NIO" class="label" id="resultado_NIO"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_21" class="radio isHidden" name="radio_a" type="radio" value="PAB"> 
+          <img src="images/banderas/PAB.png">
+          <label for="radio_21" class="label">PAB-Panama Balboa</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_21" class="checkbox isHidden" name="destinos[20]" type="checkbox" value="PAB"> 
+          <img src="images/banderas/PAB.png">
+          <label for="checkbox_21" class="label">PAB-Panama Balboa</label>
+      </div>
+      <div class="col">
+          <img src="images/PAB.png">
+          <label for="monto_PAB" class="label" id="resultado_PAB"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_22" class="radio isHidden" name="radio_a" type="radio" value="SZL"> 
+          <img src="images/banderas/SZL.png">
+          <label for="radio_22" class="label">SZL-Swaziland Lilangeni</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_22" class="checkbox isHidden" name="destinos[21]" type="checkbox" value="SZL"> 
+          <img src="images/banderas/SZL.png">
+          <label for="checkbox_22" class="label">SZL-Swaziland Lilangeni</label>
+      </div>
+      <div class="col">
+          <img src="images/DEF.png">
+          <label for="monto_SZL" class="label" id="resultado_SZL"></label>
+      </div>
+    </div>
+
+
+
+    <div class="row justify-center"><br></div>
+
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_23" class="radio isHidden" name="radio_a" type="radio" value="TRY"> 
+          <img src="images/banderas/TRY.png">
+          <label for="radio_23" class="label">TRY-Turkey Lira</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_23" class="checkbox isHidden" name="destinos[22]" type="checkbox" value="TRY"> 
+          <img src="images/banderas/TRY.png">
+          <label for="checkbox_23" class="label">TRY-Turkey Lira</label>
+      </div>
+      <div class="col">
+          <img src="images/TRY.png">
+          <label for="monto_TRY" class="label" id="resultado_TRY"></label>
+      </div>
+    </div>
+
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_24" class="radio isHidden" name="radio_a" type="radio" value="USD"> 
+          <img src="images/banderas/USD.png">
+          <label for="radio_12" class="label">USD-United States Dollar</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_24" class="checkbox isHidden" name="destinos[23]" type="checkbox" checked="checked" value="USD"> 
+          <img src="images/banderas/USD.png">
+          <label for="checkbox_12" class="label">USD-United States Dollar</label>
+      </div>
+      <div class="col">
+          <img src="images/DEF.png">
+          <label for="monto_USD" class="label" id="resultado_USD"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+
+    <div class="row justify-center">
+      <div class="col">
+          <input id="radio_25" class="radio isHidden" name="radio_a" type="radio" value="VEF"> 
+          <img src="images/banderas/VEF.png">
+          <label for="radio_25" class="label">VEF-Venezuela Bolivar</label>
+      </div>
+      <div class="col" id="checkboxes">
+          <input id="checkbox_25" class="checkbox isHidden" name="destinos[24]" type="checkbox" value="VEF"> 
+          <img src="images/banderas/VEF.png">
+          <label for="checkbox_25" class="label">VEF-Venezuela Bolivar</label>
+      </div>
+      <div class="col">
+          <img src="images/VEF.png">
+          <label for="monto_VEF" class="label" id="resultado_VEF"></label>
+      </div>
+    </div>
+
+
+    <div class="row justify-center"><br></div>
+
+    <div class="row justify-center"><br></div>
+
+    <div class="row justify-center"><br></div>
+</div>
+</body>
+</html>
